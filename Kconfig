@@ -1,0 +1,49 @@
+#
+# Copyright (c) 2018 Nordic Semiconductor
+#
+# SPDX-License-Identifier: LicenseRef-BSD-5-Clause-Nordic
+#
+
+source "Kconfig.zephyr"
+
+config EI_INFERENCE_THREAD_STACK
+	int "Inference thread stack size"
+	default 256
+	help
+	  "Set the Edge Impulse inference thread stack size."
+
+config EI_INFERENCE_THREAD_PRIO
+	int "Inference thread priority"
+	default 5
+	help
+	  "Set the Edge Impulse inference thread priority. The lower number, the higher prority."
+
+config BUZZER
+	bool "Enable buzzer"
+	default y 
+	select PWM 
+	select PWM_1 
+
+if BUZZER
+
+config BUZZER_PWM_DEV_NAME
+	string "PWM device name for buzzer"
+	default "PWM_1" 
+
+config BUZZER_PIN
+	int "Buzzer pin number"
+	default 47
+
+config BUZZER_MIN_FREQUENCY
+	int "Minimum buzzer frequency"
+	default 100
+
+config BUZZER_MAX_FREQUENCY
+	int "Maximum buzzer frequency"
+	default 10000
+
+endif # BUZZER
+
+config SHOWER_TIME_MINUTES_WARNING
+	int "Max. acceptable shower time ... ;)"
+	default 5
